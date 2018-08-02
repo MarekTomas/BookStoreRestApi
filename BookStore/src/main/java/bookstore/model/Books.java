@@ -60,5 +60,13 @@ public class Books {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Books [id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + "]";
+	}
+	
+	
+
+	
 	
 }
