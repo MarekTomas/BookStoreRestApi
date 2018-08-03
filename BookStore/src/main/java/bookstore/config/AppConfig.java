@@ -84,7 +84,7 @@ public class AppConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
-	private LocalSessionFactoryBean sesionFactory() {
+	public LocalSessionFactoryBean sessionFactory() {
 
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 

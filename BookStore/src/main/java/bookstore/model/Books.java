@@ -14,25 +14,25 @@ public class Books {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 
 	@Column(name = "title")
 	private String title;
 
 	@Column(name = "author")
 	private String author;
-	
+
 	@Column(name = "price")
 	private int price;
-	
+
 	public Books() {
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -64,9 +64,5 @@ public class Books {
 	public String toString() {
 		return "Books [id=" + id + ", title=" + title + ", author=" + author + ", price=" + price + "]";
 	}
-	
-	
 
-	
-	
 }

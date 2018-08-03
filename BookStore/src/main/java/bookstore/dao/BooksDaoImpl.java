@@ -21,7 +21,7 @@ public class BooksDaoImpl implements BooksDao {
 		
 		Session curentSession = sessionFacory.getCurrentSession();
 		
-		Query<Books> theQuery = curentSession.createQuery("from books order by id", Books.class);
+		Query<Books> theQuery = curentSession.createQuery("from Books order by title", Books.class);
 		
 		List<Books> books = theQuery.getResultList();
 		
@@ -52,7 +52,7 @@ public class BooksDaoImpl implements BooksDao {
 		
 		Session curentSession = sessionFacory.getCurrentSession();
 		
-		Query theQuery = curentSession.createQuery("delete from books where id=:id");
+		Query theQuery = curentSession.createQuery("delete from Books where id=:id");
 		theQuery.setParameter("customerId", theId);
 		
 		theQuery.executeUpdate();
