@@ -12,49 +12,49 @@ import bookstore.model.Books;
 
 @Repository
 public class BooksDaoImpl implements BooksDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFacory;
 
 	@Override
 	public List<Books> getBooks() {
-		
+
 		Session curentSession = sessionFacory.getCurrentSession();
-		
+
 		Query<Books> theQuery = curentSession.createQuery("from Books order by title", Books.class);
-		
+
 		List<Books> books = theQuery.getResultList();
-		
+
 		return books;
 	}
 
 	@Override
 	public void saveBooks(Books theBooks) {
-		
+
 		Session curentSession = sessionFacory.getCurrentSession();
-		
+
 		curentSession.saveOrUpdate(theBooks);
-		
+
 	}
 
 	@Override
 	public Books getBooks(int theId) {
-		
+
 		Session curentSession = sessionFacory.getCurrentSession();
-		
+
 		Books theBooks = curentSession.get(Books.class, theId);
-		
+
 		return theBooks;
 	}
 
 	@Override
 	public void deleteBooks(int theId) {
-		
+
 		Session curentSession = sessionFacory.getCurrentSession();
-		
-		Query theQuery = curentSession.createQuery("delete from Books where id=:id");
-		theQuery.setParameter("customerId", theId);
-		
+
+		Query theQuery = curentSession.createQuery("delete from Books where id=:booksId");
+		theQuery.setParameter("booksId", theId);
+
 		theQuery.executeUpdate();
 	}
 

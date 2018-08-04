@@ -28,15 +28,16 @@ public class BooksController {
 	}
 
 	@GetMapping("/books/{booksId}")
-	public Books getBooks(@PathVariable int BooksId) {
+	public Books getBooks(@PathVariable int booksId) {
 
-		Books theBooks = booksService.getBooks(BooksId);
+		Books theBooks = booksService.getBooks(booksId);
 		return theBooks;
 
 	}
 
 	@PostMapping("/books")
 	public Books addBooks(@RequestBody Books theBooks) {
+		
 		theBooks.setId(0);
 		booksService.saveBooks(theBooks);
 		return theBooks;
@@ -44,14 +45,16 @@ public class BooksController {
 
 	@PutMapping("/books")
 	public Books updateBooks(@RequestBody Books theBooks) {
+		
 		booksService.saveBooks(theBooks);
 		return theBooks;
 	}
 
-	@DeleteMapping
-	public String deleteBooks(@PathVariable int BooksId) {
-		booksService.deleteBooks(BooksId);
-		return "Delete Books id "+ BooksId;
+	@DeleteMapping("/books/{booksId}")
+	public String deleteBooks(@PathVariable int booksId) {
+		
+		booksService.deleteBooks(booksId);
+		return "Delete Books id " + booksId;
 
 	}
 }
