@@ -9,5 +9,8 @@
 <body>
 <h3>BookStore</h3>
 <hr>
+<a href="${pageContext.request.contextPath}/api/books">Get all books</a>
+
+
 </body>
 </html>

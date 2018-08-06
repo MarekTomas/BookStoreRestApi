@@ -19,40 +19,54 @@ import bookstore.service.BooksService;
 @RequestMapping("/api")
 public class BooksController {
 
+	// autowired booksService
 	@Autowired
 	private BooksService booksService;
 
+	//add mapping for GET/books
 	@GetMapping("/books")
 	public List<Books> getBooks() {
 		return booksService.getBooks();
 	}
 
+	//add mapping for GET/books/{booksId}
 	@GetMapping("/books/{booksId}")
 	public Books getBooks(@PathVariable int booksId) {
 
 		Books theBooks = booksService.getBooks(booksId);
+
+		if (theBooks == null) {
+			throw new BooksNotFoundException("Books id not found " + booksId);
+		}
 		return theBooks;
 
 	}
-
+	//add mapping POST/books - add new book
 	@PostMapping("/books")
 	public Books addBooks(@RequestBody Books theBooks) {
-		
+
 		theBooks.setId(0);
 		booksService.saveBooks(theBooks);
 		return theBooks;
 	}
 
+	//add mapping PUT/books - update record 
 	@PutMapping("/books")
 	public Books updateBooks(@RequestBody Books theBooks) {
-		
+
 		booksService.saveBooks(theBooks);
 		return theBooks;
 	}
-
+	
+	//add mapping DELETE/books/{booksId} - delete record
 	@DeleteMapping("/books/{booksId}")
 	public String deleteBooks(@PathVariable int booksId) {
-		
+
+		Books theBooks = booksService.getBooks(booksId);
+		if (theBooks == null) {
+			throw new BooksNotFoundException("Books id not found " + booksId);
+		}
+
 		booksService.deleteBooks(booksId);
 		return "Delete Books id " + booksId;
 
